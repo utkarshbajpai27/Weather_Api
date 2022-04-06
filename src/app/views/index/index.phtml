@@ -1,0 +1,45 @@
+<h1 class="text-center"><?php echo $this->locale->_("Enter the location");?></h1>
+<div class="row d-flex justify-content-center">
+    <div class="col-sm-6 col-md-6 text-center">
+    <?php echo $this->tag->form(""); ?>
+        <div class="input-group">
+                <label class="form-label" for="form1"></label>
+                <input type="search" name="query" id="form1" class="form-control" placeholder="Enter location"/>
+                    <button type="submit" class ="btn btn-primary">
+                    <i class="fa fa-search"></i>
+                </button>
+        </div>
+    </form>
+    </div>
+</div>
+
+<?php if (isset($searchResult)):?>
+<h1 class="text-center text-success">All Locations</h1>
+<div class="album py-5 bg-light">
+    <div class="container-fluid">
+        <div class="row">
+            <?php foreach ($searchResult as $key => $value) {
+                $id = $searchResult[$key]->id??'';
+                $name = $searchResult[$key]->name??'';
+                $region = $searchResult[$key]->region??'';
+                $country = $searchResult[$key]->country??'';
+                $latitude = $searchResult[$key]->lat??'';
+                $longitude = $searchResult[$key]->lon??'';
+                echo '<div class="col-sm-4 col-md-4">
+                    <div class="card shadow-sm">
+                    <div class="card-body">
+                    <h5 class="card-title">Name - '.$name.'</h5>
+                    <h5 class="card-title">Region - '.$region.'</h5>
+                    <h5 class="card-title">Country - '.$country.'</h5>
+                    <h5 class="card-title">Latitude - '.$latitude.'</h5>
+                    <h5 class="card-title">Longitude - '.$longitude.'</h5>
+                    <a href="/index/singleLocation/'.$name.'" class="btn btn-primary">Check weather</a>
+                    </div>
+                    </div>
+                </div>';
+                } 
+            ?>
+            </div>
+      </div>
+    </div>
+<?php endif;?>

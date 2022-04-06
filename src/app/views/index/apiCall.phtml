@@ -1,0 +1,148 @@
+<h1 class="text-center text-danger"><?php echo ucwords($api);?> API</h1> 
+<?php 
+$location = $searchResult->location??'';
+$name = $location->name??'';
+$region = $location->region??'';
+$country = $location->country??'';
+$lon = $location->lon??'';
+$lat = $location->lat??'';
+?>
+
+<?php if ($api == 'current') :?>
+<?php
+
+$current = $searchResult->current;
+$celcius = $current->temp_c;
+$fehrenheit = $current->temp_f;
+$weather = $current->condition->text;
+$image = $current->condition->icon;
+
+echo "Location is ".$name."<br>";
+echo "Region is ".$region."<br>";
+echo "Country is ".$country."<br>";
+echo "Latitude is ".$lat."<br>";
+
+echo "Temperature in celcius is ".$celcius."<br>";
+echo "Temperature in fehrenheit is ".$fehrenheit."<br>";
+echo "Weather is ".$weather."<br>";
+?>
+<?php endif;?>
+
+<?php if($api == 'forecast'):?>
+<?php
+echo "Location is ".$name."<br>";
+echo "Region is ".$region."<br>";
+echo "Country is ".$country."<br>";
+echo "Latitude is ".$lat."<br>";
+?>
+    <div class="table-responsive">
+    <table class="table table-striped table-sm text-center">
+        <thead>
+            <tr>
+              <th scope="col"><?php echo $this->locale->_("Date");?></th>
+              <th scope="col"><?php echo $this->locale->_("Maximum Temperature");?></th>
+              <th scope="col"><?php echo $this->locale->_("Minimum Temperature");?></th>
+              <th scope="col"><?php echo $this->locale->_("Weatther");?></th>
+            </tr>
+        </thead>
+        <tbody>
+<?php
+$forecast = $searchResult->forecast->forecastday;
+foreach ($forecast as $key => $value) {
+    $date = $forecast[$key]->date;
+    $maxTemp = $forecast[$key]->day->maxtemp_c;
+    $minTemp = $forecast[$key]->day->mintemp_c;
+    $weather = $forecast[$key]->day->condition->text;
+    echo "<tr>
+            <td>$date</td>
+            <td>$maxTemp</td>
+            <td>$minTemp</td>
+            <td>$weather</td>
+        </tr>";
+}
+?>
+</tbody>
+</table>
+</div>
+<?php endif;?>
+
+<?php if ($api == 'history') :?>
+<?php
+$forecast = $searchResult->forecast->forecastday;
+$date = $forecast[0]->date;
+$maxTemp = $forecast[0]->day->maxtemp_c;
+$minTemp = $forecast[0]->day->mintemp_c;
+$weather = $forecast[0]->day->condition->text;
+
+echo "Temperate on date ".$date." was this -<br>";
+echo "Max temperature was ".$maxTemp."<br>";
+echo "Min temperature was ".$minTemp."<br>";
+echo "Weather was ".$weather;
+?>
+<?php endif;?>
+
+<?php if ($api == 'sports') :?>
+<?php
+foreach ($searchResult as $key => $value) {
+    echo ucwords($key)." matches are in these locations -";
+    echo "<br>";
+    foreach($value as $key2 => $value2) {
+        echo "&nbsp&nbsp&nbsp"; 
+        echo "Location -";
+        echo $value2->stadium;
+        echo " Time ";
+        echo $value2->start;
+        echo " against ";
+        echo $value2->match;
+        echo "<br>";
+    }
+}
+?>
+<?php endif;?>
+
+<?php if ($api == 'astronomy') :?>
+<?php
+echo "Location is ".$name."<br>";
+echo "Region is ".$region."<br>";
+echo "Country is ".$country."<br>";
+echo "Latitude is ".$lat."<br>";
+
+$astro = $searchResult->astronomy;
+$sunrise = $astro->astro->sunrise;
+$sunset = $astro->astro->sunset;
+$moonrise = $astro->astro->moonrise;
+$moonset = $astro->astro->moonset;
+
+echo "Sunrise will be at -".$sunrise."<br>";
+echo "Sunset will be at -".$sunset."<br>";
+echo "Moonrise will be at -".$moonrise."<br>";
+echo "Moonset will be at -".$moonset."<br>";
+
+?> 
+<?php endif;?>
+
+<?php if ($api == 'air_quality') :?>
+<?php
+$aq = $searchResult->current->air_quality;
+$co = $aq->co;
+$no2 = $aq->no2;
+$o3 = $aq->o3;
+$so2 = $aq->so2;
+
+echo "Quantity of Carbon monooxide is ".$co."<br>";
+echo "Quantity of Nitrogen DiOxide is ".$no2."<br>";
+echo "Quantity of Ozone is ".$o3."<br>";
+echo "Quantity of Sulphur DiOxide is ".$so2."<br>";
+?>
+<?php endif;?>
+
+<?php if ($api == 'weather_Alert') :?>
+<?php
+$alerts = $searchResult->alerts;
+if (count($alerts->alert)==0) {
+    echo "No alerts issued for this place";
+} else {
+    echo "Alert issued for this place";
+}
+?>
+<?php endif;?>

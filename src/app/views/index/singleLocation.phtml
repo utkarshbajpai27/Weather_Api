@@ -1,0 +1,31 @@
+<h1 class="text-center text-success"> Location - <?php echo $location;?></h1>
+    
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+        <?php echo $this->tag->linkTo(['/index/apiCall/'.$location.'/current', 'Current', 'class'=>'px-3']);?>
+    </button>
+    
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+        <?php echo $this->tag->linkTo(['/index/apiCall/'.$location.'/forecast', 'Forecast', 'class'=>'px-3']);?>
+    </button>
+    
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+        <?php echo $this->tag->linkTo(['/index/apiCall/'.$location.'/history', 'History', 'class'=>'px-3']);?>
+    </button>
+    
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+        <?php echo $this->tag->linkTo(['/index/apiCall/'.$location.'/sports', 'Sports', 'class'=>'px-3']);?>
+    </button>
+    
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+        <?php echo $this->tag->linkTo(['/index/apiCall/'.$location.'/astronomy', 'Astronomy', 'class'=>'px-3']);?>
+    </button>
+    
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+        <?php echo $this->tag->linkTo(['/index/apiCall/'.$location.'/weather_Alert', 'Weather Alert', 'class'=>'px-3']);?>
+    </button>
+    
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+        <?php echo $this->tag->linkTo(['/index/apiCall/'.$location.'/air_quality', 'Air Quality', 'class'=>'px-3']);?>
+    </button>
+
+<h2 class="text-center text-info">History feature is limited to 7 days and forecast feature limited to 3 days</h2>
