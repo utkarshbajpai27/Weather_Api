@@ -75,6 +75,13 @@ class IndexController extends Controller
         $this->view->location = $location;
     }
 
+
+    /**
+     * curlAction function
+     * Hitting endpoints using cURL session
+     * @param [type] $url
+     * @return void
+     */
     public function curlAction($url)
     {
         $ch = curl_init();
@@ -94,6 +101,13 @@ class IndexController extends Controller
         return $searchResult;
     }
 
+
+    /**
+     * guzzleAction function
+     * Hitting endpoints using guzzle library
+     * @param [type] $url
+     * @return void
+     */
     public function guzzleAction($url)
     {
         $client = new Client();
