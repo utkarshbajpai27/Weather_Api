@@ -1,4 +1,7 @@
-<h1 class="text-center text-danger"><?php echo ucwords($api);?> API</h1> 
+<h1 class="text-center text-danger"><?php echo ucwords($api);?> API</h1>
+ 
+<!--------------------------------------------------- COMMON VARIABLES START ----------------------------------------------------->
+
 <?php 
 $location = $searchResult->location??'';
 $name = $location->name??'';
@@ -7,6 +10,12 @@ $country = $location->country??'';
 $lon = $location->lon??'';
 $lat = $location->lat??'';
 ?>
+
+<!--------------------------------------------------- COMMON VARIABLES END ------------------------------------------------------->
+
+
+<!--------------------------------------------------- IF API CALL IS CURRENT ----------------------------------------------------->
+
 
 <?php if ($api == 'current') :?>
 <?php
@@ -27,6 +36,8 @@ echo "Temperature in fehrenheit is ".$fehrenheit."<br>";
 echo "Weather is ".$weather."<br>";
 ?>
 <?php endif;?>
+
+<!--------------------------------------------------- IF API CALL IS FORECAST ---------------------------------------------------->
 
 <?php if($api == 'forecast'):?>
 <?php
@@ -66,6 +77,8 @@ foreach ($forecast as $key => $value) {
 </div>
 <?php endif;?>
 
+<!--------------------------------------------------- IF API CALL IS HISTORY ----------------------------------------------------->
+
 <?php if ($api == 'history') :?>
 <?php
 $forecast = $searchResult->forecast->forecastday;
@@ -80,6 +93,8 @@ echo "Min temperature was ".$minTemp."<br>";
 echo "Weather was ".$weather;
 ?>
 <?php endif;?>
+
+<!--------------------------------------------------- IF API CALL IS SPORTS ----------------------------------------------------->
 
 <?php if ($api == 'sports') :?>
 <?php
@@ -99,6 +114,8 @@ foreach ($searchResult as $key => $value) {
 }
 ?>
 <?php endif;?>
+
+<!--------------------------------------------------- IF API CALL IS ASTRONOMY---------------------------------------------------->
 
 <?php if ($api == 'astronomy') :?>
 <?php
@@ -121,6 +138,9 @@ echo "Moonset will be at -".$moonset."<br>";
 ?> 
 <?php endif;?>
 
+<!------------------------------------------------- IF API CALL IS AIR QUALITY --------------------------------------------------->
+
+
 <?php if ($api == 'air_quality') :?>
 <?php
 $aq = $searchResult->current->air_quality;
@@ -136,6 +156,8 @@ echo "Quantity of Sulphur DiOxide is ".$so2."<br>";
 ?>
 <?php endif;?>
 
+<!-------------------------------------------------- IF API CALL IS WEATHER ALERT------------------------------------------------->
+
 <?php if ($api == 'weather_Alert') :?>
 <?php
 $alerts = $searchResult->alerts;
@@ -146,6 +168,8 @@ if (count($alerts->alert)==0) {
 }
 ?>
 <?php endif;?>
+
+<!--------------------------------------------------- IF API CALL IS TIMEZONE ---------------------------------------------------->
 
 <?php if ($api == 'timezone') :?>
 <?php
