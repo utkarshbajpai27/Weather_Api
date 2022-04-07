@@ -64,20 +64,28 @@ class IndexController extends Controller
         $searchResult = $this->curlAction($url);
         
         $this->view->searchResult = $searchResult;
+        
         $this->view->api = $api;
+        
         $this->view->location = $location;
     }
 
     public function curlAction($url)
     {
         $ch = curl_init();
+        
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        
         curl_setopt($ch, CURLOPT_URL, $url);
+        
         $searchResult = json_decode(curl_exec($ch));
+        
         curl_close($ch);
+        
         if (count((array)$searchResult)==0) {
             die("Invalid Request");
         }
+        
         return $searchResult;
     }
 }

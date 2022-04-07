@@ -146,3 +146,17 @@ if (count($alerts->alert)==0) {
 }
 ?>
 <?php endif;?>
+
+<?php if ($api == 'timezone') :?>
+<?php
+$zone = $location->tz_id;
+$time = $location->localtime;
+
+echo "Location is ".$name."<br>";
+echo "Region is ".$region."<br>";
+echo "Country is ".$country."<br>";
+echo "Latitude is ".$lat."<br>";
+echo "TimeZone is ".$zone."<br>";
+echo "Time is ".$time."<br>";
+?>
+<?php endif;?>
