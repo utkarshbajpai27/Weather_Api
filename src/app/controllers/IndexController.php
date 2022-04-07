@@ -1,5 +1,6 @@
 <?php
 use Phalcon\Mvc\Controller;
+use GuzzleHttp\Client;
 
 class IndexController extends Controller
 {
@@ -19,7 +20,9 @@ class IndexController extends Controller
             
             $url = "http://api.weatherapi.com/v1/search.json?key=$key&q=$query";
 
-            $searchResult = $this->curlAction($url);
+            // $searchResult = $this->curlAction($url);
+            $searchResult = $this->guzzleAction($url);
+
 
             $this->view->searchResult = $searchResult;
         }
@@ -61,7 +64,9 @@ class IndexController extends Controller
             $url = "http://api.weatherapi.com/v1/forecast.json?key=$key&q=$location&alerts=yes";
         }
 
-        $searchResult = $this->curlAction($url);
+        // $searchResult = $this->curlAction($url);
+        $searchResult = $this->guzzleAction($url);
+
         
         $this->view->searchResult = $searchResult;
         
@@ -82,6 +87,18 @@ class IndexController extends Controller
         
         curl_close($ch);
         
+        if (count((array)$searchResult)==0) {
+            die("Invalid Request");
+        }
+        
+        return $searchResult;
+    }
+
+    public function guzzleAction($url)
+    {
+        $client = new Client();
+        $response = $client->request("GET", $url);
+        $searchResult = json_decode($response->getBody()->getContents());
         if (count((array)$searchResult)==0) {
             die("Invalid Request");
         }
