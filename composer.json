@@ -1,6 +1,6 @@
 {
-    "name": "codinator/weather",
-    "description": "This is my weather api app",
+    "name": "cedcoss/weather",
+    "description": "codinatorPackage/WeatherApp",
     "type": "project",
     "authors": [
         {
@@ -8,6 +8,6 @@
             "email": "utkarshbajpai@cedcoss.com"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {}
 }
