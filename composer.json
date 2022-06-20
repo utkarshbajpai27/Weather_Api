@@ -1,6 +1,6 @@
 {
-    "name": "cedcoss/weather",
-    "description": "This is my weather file",
+    "name": "codinator/weather",
+    "description": "This is my weather api app",
     "type": "project",
     "authors": [
         {
