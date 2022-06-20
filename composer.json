@@ -1,13 +1,7 @@
 {
-    "name": "cedcoss/weather",
-    "description": "codinatorPackage/WeatherApp",
+    "name": "codinatorpackages/weatherapp",
+    "description": "this is my weather app",
     "type": "project",
-    "authors": [
-        {
-            "name": "utkarshbajpai27",
-            "email": "utkarshbajpai@cedcoss.com"
-        }
-    ],
     "minimum-stability": "dev",
     "require": {}
 }
