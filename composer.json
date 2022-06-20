@@ -1,0 +1,13 @@
+{
+    "name": "cedcoss/weather",
+    "description": "This is my weather file",
+    "type": "project",
+    "authors": [
+        {
+            "name": "utkarshbajpai27",
+            "email": "utkarshbajpai@cedcoss.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}

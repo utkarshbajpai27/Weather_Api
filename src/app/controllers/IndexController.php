@@ -18,7 +18,7 @@ class IndexController extends Controller
             
             $query = urlencode($this->request->getPost('query'));
             
-            $url = "http://api.weatherapi.com/v1/search.json?key=$key&q=$query";
+            $url = "http://api.weatherapi.com/v1/search.json?key=".$key."&q=".$query."";
 
             // $searchResult = $this->curlAction($url);
             $searchResult = $this->guzzleAction($url);
@@ -49,19 +49,19 @@ class IndexController extends Controller
         $url = "http://api.weatherapi.com/v1/$api.json?key=$key&q=$location";
 
         if ($api == 'history') {
-            $url = "http://api.weatherapi.com/v1/$api.json?key=$key&q=$location&dt=$now";
+            $url = "http://api.weatherapi.com/v1/".$api.".json?key=".$key."&q=".$location."&dt=".$now."";
         }
 
         if ($api == 'forecast') {
-            $url = "http://api.weatherapi.com/v1/$api.json?key=$key&q=$location&days=3";
+            $url = "http://api.weatherapi.com/v1/".$api.".json?key=".$key."&q=".$location."&days=3";
         }
 
         if ($api == 'air_quality') {
-            $url = "http://api.weatherapi.com/v1/current.json?key=$key&q=$location&aqi=yes";
+            $url = "http://api.weatherapi.com/v1/current.json?key=".$key."&q=".$location."&aqi=yes";
         }
 
         if ($api == "weather_Alert") {
-            $url = "http://api.weatherapi.com/v1/forecast.json?key=$key&q=$location&alerts=yes";
+            $url = "http://api.weatherapi.com/v1/forecast.json?key=".$key."&q=".$location."&alerts=yes";
         }
 
         // $searchResult = $this->curlAction($url);
